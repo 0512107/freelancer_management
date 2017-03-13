@@ -73,6 +73,7 @@ class Users extends CI_Controller{
 				$address = trim($this->input->post('address'));
 				$updated = time();
 				$created = time();
+				$defaultPassword = "512e7bc8ca075f8da2fd4b9a34f080e3"; //123456
 				$data = array(
 					"first_name" => $firstName,
 					"last_name" => $lastName,
@@ -83,6 +84,7 @@ class Users extends CI_Controller{
 					"role" => $role,
 					"bank_name" => $bankName,
 					"bank_number" => $bankNumber,
+					"password" => $defaultPassword,
 					"address" => $address,
 					"updated" => $updated,
 					"created" => $created
