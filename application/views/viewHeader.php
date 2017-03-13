@@ -59,7 +59,7 @@
 						  <i class="fa fa-dashboard <?php echo  $page =='dash' ? 'fa-spin' : '' ?>""></i><span class="link-title">&nbsp;Dashboard</span> 
 						</a> 
 					</li>
-					<?php if ($this->session->userdata("role") == "admin") { ?>
+					
 					<li <?php echo  $page =='customers' ? 'class="active"' : '' ?>>
 						<a href="<?php echo base_url() ?>customers">
 						  <i class="fa fa-user-circle-o <?php echo  $page =='customers' ? 'fa-spin' : '' ?>"></i><span class="link-title">&nbsp;Customer</span> 
@@ -71,7 +71,7 @@
 						</a> 
 					</li>
 					<li class="nav-divider"></li>
-					<?php } ?>
+					
 					<li>
 						<a href="<?php echo base_url() ?>logout">
 						  <i class="fa fa-sign-out"></i><span class="link-title">&nbsp;Logout</span> 
