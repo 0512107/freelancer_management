@@ -58,7 +58,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" style="font-weight: bold;">Add New Customer</h4>
 			</div>
-			<form id="add-customer-form" action="<?php echo base_url() ?>customers/insert" onclick="$('#add-customer-form').validationEngine('hide')">
+			<form id="add-customer-form" action="<?php echo base_url() ?>admin/customers/insert" onclick="$('#add-customer-form').validationEngine('hide')">
 				<div class="modal-body">
 					<div class="alert alert-danger" id="error-validate" style="display:none;"></div>
 					<div class="alert alert-success" id="success-forgot-pass" style="display:none;"></div>
@@ -101,7 +101,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" style="font-weight: bold;">Update Customer</h4>
 			</div>
-			<form id="update-customer-form" action="<?php echo base_url() ?>customers/update" onclick="$('#update-customer-form').validationEngine('hide')">
+			<form id="update-customer-form" action="<?php echo base_url() ?>admin/customers/update" onclick="$('#update-customer-form').validationEngine('hide')">
 				<div class="modal-body">
 					<div class="alert alert-danger" id="error-update-customer" style="display:none;"></div>
 					<div class="alert alert-success" id="success-update-customer" style="display:none;"></div>
@@ -144,7 +144,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" style="font-weight: bold;">Delete Customer</h4>
 			</div>
-			<form id="delete-customer-form" action="<?php echo base_url() ?>customers/delete" onclick="$('#delete-customer-form').validationEngine('hide')">
+			<form id="delete-customer-form" action="<?php echo base_url() ?>admin/customers/delete" onclick="$('#delete-customer-form').validationEngine('hide')">
 				<input type="hidden" value="" class="form-control" id="email_delete_form" name="email">
 				<input type="hidden" value="" class="form-control" id="id_delete_form" name="id">
 				<div class="modal-body">
@@ -187,7 +187,7 @@ $arr['pluginsJquery'] = array(
 	HTTP_LIB_PATH . "datatables/3/dataTables.bootstrap.js",
 	HTTP_LIB_PATH . "validationEngine/js/jquery.validationEngine.js",
 	HTTP_LIB_PATH . "validationEngine/js/languages/jquery.validationEngine-en.js",
-	HTTP_JS_PATH . "customers.js"
+	HTTP_JS_PATH . "admin/customers.js"
 );
 $this->load->view('viewFooter', $arr);
 ?>

@@ -9,7 +9,7 @@ $(document).ready(function(){
 		"processing": true,
         "serverSide": true,
 		ajax: {
-			url: base_url + 'customers/get_customers',
+			url: base_url + 'admin/customers/get_customers',
 			type: 'POST',
 			dataType: "json"
 		},
@@ -118,7 +118,7 @@ function ajaxValidationCallbackDeleteCustomerDialog(status, form, json, options)
 		$('#success-update-customer').html(json.message);
 		$('#success-update-customer').show();
 		$('#error-update-customer').hide();
-		window.location.href = base_url + "customers";
+		window.location.href = base_url + "admin/customers";
 	}
 	
 	$.LoadingOverlay("hide");
@@ -138,7 +138,7 @@ function ajaxValidationCallbackUpdateCustomerDialog(status, form, json, options)
 		$('#success-update-customer').html(json.message);
 		$('#success-update-customer').show();
 		$('#error-update-customer').hide();
-		window.location.href = base_url + "customers";
+		window.location.href = base_url + "admin/customers";
 	}
 	
 	$.LoadingOverlay("hide");
@@ -162,7 +162,7 @@ function ajaxValidationCallbackAddCustomerDialog(status, form, json, options){
 		$('#success-forgot-pass').show();
 		$('#error-validate').hide();
 		$("#add-customer-form input").css("border", "1px solid #ccc");
-		window.location.href = base_url + "customers";
+		window.location.href = base_url + "admin/customers";
 	}
 	
 	$.LoadingOverlay("hide");

@@ -9,7 +9,7 @@ $(document).ready(function(){
 		"processing": true,
         "serverSide": true,
 		ajax: {
-			url: base_url + 'users/get_users',
+			url: base_url + 'admin/users/get_users',
 			type: 'POST',
 			dataType: "json"
 		},
@@ -117,7 +117,7 @@ function ajaxValidationCallbackDeleteUserDialog(status, form, json, options){
 		$('#success-delete-user').html(json.message);
 		$('#success-delete-user').show();
 		$('#error-delete-user').hide();
-		window.location.href = base_url + "users";
+		window.location.href = base_url + "admin/users";
 	}
 	
 	$.LoadingOverlay("hide");
@@ -137,7 +137,7 @@ function ajaxValidationCallbackUpdateUserDialog(status, form, json, options){
 		$('#success-update-customer').html(json.message);
 		$('#success-update-customer').show();
 		$('#error-update-customer').hide();
-		window.location.href = base_url + "users";
+		window.location.href = base_url + "admin/users";
 	}
 	
 	$.LoadingOverlay("hide");
@@ -161,7 +161,7 @@ function ajaxValidationCallbackAddUserDialog(status, form, json, options){
 		$('#success-add-user').show();
 		$('#error-add-user').hide();
 		$("#add-user-form input").css("border", "1px solid #ccc");
-		window.location.href = base_url + "users";
+		window.location.href = base_url + "admin/users";
 	}
 	
 	$.LoadingOverlay("hide");

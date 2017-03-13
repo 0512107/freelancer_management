@@ -9,7 +9,7 @@ class Login extends CI_Controller{
     }
      
     public function index() {
-		if ($this->session->userdata('is_user_login')) {
+		if ($this->session->userdata('is_logged')) {
             $arr['page']='dash';
 			$this->load->view('viewDashboard',$arr);
         } else {
@@ -18,7 +18,7 @@ class Login extends CI_Controller{
     }
 	
 	public function do_login() {
-		if ($this->session->userdata('is_user_login')) {
+		if ($this->session->userdata('is_logged')) {
             redirect('dashboard');
         } else {
 			if ($this->input->method() == "post") {
@@ -35,7 +35,7 @@ class Login extends CI_Controller{
 								'email' => $res['email'],     
 								'full_name' => $res['full_name'],
 								'role' => $res['role'],
-								'is_user_login' => true
+								'is_logged' => true
 							)
                         );
                     }
@@ -56,7 +56,7 @@ class Login extends CI_Controller{
         $this->session->unset_userdata('id');
         $this->session->unset_userdata('email');
 		$this->session->unset_userdata('full_name');
-        $this->session->unset_userdata('is_user_login');   
+        $this->session->unset_userdata('is_logged');   
         $this->session->sess_destroy();
         $this->output->set_header("Cache-Control: no-store, no-cache, must-revalidate, no-transform, max-age=0, post-check=0, pre-check=0");
         $this->output->set_header("Pragma: no-cache");
@@ -120,6 +120,46 @@ class Login extends CI_Controller{
 			}
 		}
 		$this->load->view('viewNewPassword', $arr);
+	}
+	
+	public function update_pass() {	
+		if ($this->session->userdata('is_logged')) {
+			if ($this->input->method() == "post") {
+				$idUser = $this->session->userdata("id");
+				if (empty($idUser)) {
+					redirect('dashboard', 'refresh');
+				}
+				
+				$this->load->model('User');
+				$oldPass = $this->input->post("old_pass");
+				$userDetail = $this->User->getList("*", array("id" => $idUser))[0];
+				if (count($userDetail) == 0 ) {
+					echo json_encode(array("result" => "error", "field" => "", "message" => "<strong>Error:</strong> Can not find the user "));
+					exit;
+				} else {
+					$encodeOldPass = md5($this->_salt . $oldPass);
+					if ($encodeOldPass == $userDetail["password"]) {
+						$newPassword = $this->input->post('new_pass');
+						$encodeNewPassword = md5($this->_salt . $newPassword);
+						if ($this->User->update(array("password" => $encodeNewPassword), array('id' => $idUser))) {
+							echo json_encode(array("result" => "success", "message" => "<strong>Success:</strong> New Password has been updated"));
+							exit;
+						} else {
+							echo json_encode(array("result" => "error", "field" => "", "message" => "<strong>Error:</strong> Whoops! There was an error "));
+							exit;
+						}
+					} else {
+						echo json_encode(array("result" => "error", "field" => "old_pass", "message" => "<strong>Error:</strong> The old pass does not correct "));
+						exit;
+					}
+				}
+			}
+			
+            $arr['page']= 'update-pass';
+			$this->load->view('user/viewUpdatePass',$arr);
+        } else {
+			$this->load->view('viewLogin');
+        }
 	}
 	
 	private function generateCode() {

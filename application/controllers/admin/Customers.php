@@ -7,14 +7,18 @@ class Customers extends CI_Controller{
 	
     public function __construct() {
         parent::__construct();
-		if (!$this->session->userdata('is_user_login')) {
+		if (!$this->session->userdata('is_logged')) {
             redirect(base_url() . 'login');
+        }
+		
+		if ($this->session->userdata('role') != "admin") {
+            redirect(base_url() . 'dashboard');
         }
     }
      
     public function index() {
 		$arr['page']='customers';		
-		$this->load->view('viewCustomer',$arr);
+		$this->load->view('admin/viewCustomer',$arr);
     }
 	
 	public function get_customers() {

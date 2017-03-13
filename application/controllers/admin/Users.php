@@ -6,7 +6,7 @@ if (!defined('BASEPATH'))
 class Users extends CI_Controller{
 	public function __construct() {
         parent::__construct();
-		if (!$this->session->userdata('is_user_login')) {
+		if (!$this->session->userdata('is_logged')) {
             redirect(base_url() . 'login');
         }
 		
@@ -17,7 +17,7 @@ class Users extends CI_Controller{
 	
 	public function index() {
 		$arr['page']='users';		
-		$this->load->view('users/viewUsers',$arr);
+		$this->load->view('admin/viewUsers',$arr);
     }
 	
 	public function get_users() {
@@ -122,8 +122,7 @@ class Users extends CI_Controller{
 				"bank_name" => $bankName,
 				"bank_number" => $bankNumber,
 				"address" => $address,
-				"updated" => $updated,
-				"created" => $created
+				"updated" => $updated
 			);
 			
 			if ($this->session->userdata("role") == "admin") {

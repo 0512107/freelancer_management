@@ -61,7 +61,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" style="font-weight: bold;">Add New Customer</h4>
 			</div>
-			<form id="add-user-form" action="<?php echo base_url() ?>users/insert" onclick="$('#add-user-form').validationEngine('hide')">
+			<form id="add-user-form" action="<?php echo base_url() ?>admin/users/insert" onclick="$('#add-user-form').validationEngine('hide')">
 				<div class="modal-body">
 					<div class="alert alert-danger" id="error-add-user" style="display:none;"></div>
 					<div class="alert alert-success" id="success-add-user" style="display:none;"></div>
@@ -133,7 +133,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" style="font-weight: bold;">Update User</h4>
 			</div>
-			<form id="update-user-form" action="<?php echo base_url() ?>users/update" onclick="$('#update-user-form').validationEngine('hide')">
+			<form id="update-user-form" action="<?php echo base_url() ?>admin/users/update" onclick="$('#update-user-form').validationEngine('hide')">
 				<div class="modal-body">
 					<div class="alert alert-danger" id="error-update-user" style="display:none;"></div>
 					<div class="alert alert-success" id="success-update-user" style="display:none;"></div>
@@ -205,7 +205,7 @@
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" style="font-weight: bold;">Delete User</h4>
 			</div>
-			<form id="delete-user-form" action="<?php echo base_url() ?>users/delete" onclick="$('#delete-user-form').validationEngine('hide')">
+			<form id="delete-user-form" action="<?php echo base_url() ?>admin/users/delete" onclick="$('#delete-user-form').validationEngine('hide')">
 				<input type="hidden" value="" class="form-control" id="email_delete_form" name="email">
 				<input type="hidden" value="" class="form-control" id="id_delete_form" name="id">
 				<div class="modal-body">
@@ -249,7 +249,7 @@ $arr['pluginsJquery'] = array(
 	HTTP_LIB_PATH . "datatables/3/dataTables.bootstrap.js",
 	HTTP_LIB_PATH . "validationEngine/js/jquery.validationEngine.js",
 	HTTP_LIB_PATH . "validationEngine/js/languages/jquery.validationEngine-en.js",
-	HTTP_JS_PATH . "users.js"
+	HTTP_JS_PATH . "admin/users.js"
 );
 $this->load->view('viewFooter', $arr);
 ?>
