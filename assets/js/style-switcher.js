@@ -97,14 +97,10 @@ StyleSwitcher.prototype.build = function () {
     $this.storageManager = new LocalStorageManager();
 
     var winlocpath = window.location.pathname.toString();
-    var imgPath = "";
+    var imgPath = base_url;
 
     if ($('body').css('direction') === "rtl") {
         $('body').addClass('rtl');
-    }
-
-    if (winlocpath.indexOf("/rtl/") > -1) {
-        imgPath += "../";
     }
 
     $('body').css({

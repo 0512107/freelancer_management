@@ -15,12 +15,9 @@ $(document).ready(function(){
 		},
 		columns: [
 			{"data" : ""},
-			{"data" : "last_name"},
-			{"data" : "first_name"},
 			{"data" : "full_name"},
 			{"data" : "email"},
 			{"data" : "phone"},
-			{"data" : "description"},
 			{"data" : ""}
 		],
 		"pageLength": 50,
@@ -34,17 +31,13 @@ $(document).ready(function(){
 			},
 			{
 				"render": function ( data, type, row ) {
-					return "<button type='button' class='btn btn-primary update-customer' id-customer='" + row['id'] + "'> Update </button>&nbsp; <button class='btn btn-danger delete-customer' id-customer='" + row['id'] + "'>Delete</a>"
+					return "<button type='button' class='btn btn-info detail-customer'> Detail </button>&nbsp;<button type='button' class='btn btn-primary update-customer'> Update </button>&nbsp; <button class='btn btn-danger delete-customer'>Delete</a>"
 				},
-				"targets": 7
+				"targets": 4
 			}
 		],
 		fnDrawCallback: function(data) { 
-			$.LoadingOverlay("hide"); console.log(data);
-			if (data["start"] == 0) {
-				
-			}
-			
+			$.LoadingOverlay("hide");
 		},
 		"scrollX": true
     } );
@@ -59,6 +52,18 @@ $(document).ready(function(){
 		});
 		$('#bt-add-customer-dialog').off('click');		
 	});
+	
+	$('#list-customer tbody').on( 'click', '.detail-customer', function () {
+        var data = table.row( $(this).parents('tr') ).data();
+		$("#last_name_detail").val(data['last_name']);
+		$("#first_name_detail").val(data['first_name']);
+		$("#email_detail").val(data['email']);
+		$("#phone_detail").val(data['phone']);
+		tinymce.get('description_detail').setContent(decodeHtml(data['description']));
+		$('#modal-detail-customer').modal({
+			show: 'true'
+		});
+    } );
 	
 	$('#list-customer tbody').on( 'click', '.update-customer', function () {
         var data = table.row( $(this).parents('tr') ).data();

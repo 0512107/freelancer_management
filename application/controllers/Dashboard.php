@@ -13,6 +13,7 @@ class Dashboard extends CI_Controller{
      
     public function index() {
 		$arr['page']='dash';
+		//$arr['subPage'] = '';
 		$this->load->view('viewDashboard',$arr);
     }
 }

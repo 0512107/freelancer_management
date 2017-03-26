@@ -9,7 +9,17 @@
 
 <header class="head" style="border-left: 1px solid rgba(0, 0, 0, 0.85);">
 	<div class="main-bar">
-		<h3><i class="fa fa-user-circle-o"></i>&nbsp; Users</h3>
+		<div style="float:left;">
+			<h3><i class="fa fa-user-circle-o"></i>&nbsp; Users</h3>
+		</div>
+		<div style="float:right;">
+			<div class="btn-group">
+				<a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+				  <i class="fa fa-bars"></i>
+				</a> 
+			</div>
+		</div>
+		<div style="clear:both;"></div>
 	</div>
 </header>
 
@@ -26,20 +36,15 @@
 						</div>
 					</header>
 					
-					<div id="collapse4" class="body">
+					<div id="collapse4" class="body col-lg-8">
 						<table id="list-user" class="table table-bordered table-condensed table-hover table-striped">
 							<thead>
 								<tr>
-									<th>Last Name</th>
-									<th>First Name</th>
 									<th>Full Name</th>
 									<th>Email</th>
 									<th>Phone</th>
 									<th>Bank Name</th>
 									<th>Bank Number</th>
-									<th>Role</th>
-									<th>Address</th>
-									<th>Description</th>
 									<th>Operation</th>
 								</tr>
 							</thead>
@@ -54,12 +59,12 @@
 	</div>
 </div>
 
-<div id="modal-add-new-user" class="modal fade">
+<div id="modal-add-new-user" class="modal fade custom-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title" style="font-weight: bold;">Add New Customer</h4>
+				<h4 class="modal-title" style="font-weight: bold;">Add New User</h4>
 			</div>
 			<form id="add-user-form" action="<?php echo base_url() ?>admin/users/insert" onclick="$('#add-user-form').validationEngine('hide')">
 				<div class="modal-body">
@@ -126,7 +131,76 @@
 	</div>
 </div>
 
-<div id="modal-update-user" class="modal fade">
+<div id="modal-detail-user" class="modal fade custom-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" style="font-weight: bold;">User Detail</h4>
+			</div>
+			
+			<div class="modal-body">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="last_name">Last Name:</label>
+						<input readonly type="text" class="form-control" id="last_name_detail" name="last_name">
+					</div>
+					<div class="form-group">
+						<label for="first_name">First Name:</label>
+						<input readonly type="text" class="form-control" id="first_name_detail" name="first_name">
+					</div>
+					<div class="form-group">
+						<label for="email">Email:</label>
+						<input readonly type="text" class="form-control" id="email_detail" name="email">
+					</div>
+					<div class="form-group">
+						<label for="phone">Phone:</label>
+						<input readonly type="text" class="form-control" id="phone_detail" name="phone">
+					</div>
+				</div>
+				
+				<div class="col-lg-6">
+					<?php if ($this->session->userdata('role') == "admin") { ?>
+					<div class="form-group">
+						<label for="role">Role:</label>
+						<select readonly name="role" id="role_detail" class="form-control">
+							<option value="user">User</option>
+							<option value="admin">Admin</option>
+						</select>
+					</div>
+					<?php } ?>
+					<div class="form-group">
+						<label for="bank_name">Bank Name:</label>
+						<input readonly type="text" class="form-control" id="bank_name_detail" name="bank_name">
+					</div>
+					<div class="form-group">
+						<label for="bank_number">Bank Number:</label>
+						<input readonly type="text" class="form-control" id="bank_number_detail" name="bank_number">
+					</div>
+					<div class="form-group">
+						<label for="address">Address:</label>
+						<input readonly type="text" class="form-control" id="address_detail" name="address">
+					</div>
+				</div>
+				
+				<div class="col-lg-12">
+					<div class="form-group">
+						<label for="desxription" class="control-label">Description:</label>
+						<div>
+							<textarea readonly maxlength="140" class="form-control" id="description_detail" name="description"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="clear:both;"></div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="modal-update-user" class="modal fade custom-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -198,7 +272,7 @@
 	</div>
 </div>
 
-<div id="modal-delete-user" class="modal fade">
+<div id="modal-delete-user" class="modal fade custom-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">

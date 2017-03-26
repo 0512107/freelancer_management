@@ -658,6 +658,8 @@ if (typeof jQuery === 'undefined') {
       [dimension](0)
       .one('bsTransitionEnd', $.proxy(complete, this))
       .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+	  
+	this.$element.removeAttr("style")
   }
 
   Collapse.prototype.toggle = function () {

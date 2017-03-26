@@ -9,7 +9,17 @@
 
 <header class="head" style="border-left: 1px solid rgba(0, 0, 0, 0.85);">
 	<div class="main-bar">
-		<h3><i class="fa fa-user-circle-o"></i>&nbsp; Customers</h3>
+		<div style="float:left;">
+			<h3><i class="fa fa-user-circle-o"></i>&nbsp; Customers</h3>
+		</div>
+		<div style="float:right;">
+			<div class="btn-group">
+				<a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+				  <i class="fa fa-bars"></i>
+				</a> 
+			</div>
+		</div>
+		<div style="clear:both;"></div>
 	</div>
 </header>
 
@@ -31,12 +41,9 @@
 							<thead>
 								<tr>
 									<th>No.</th>
-									<th>Last Name</th>
-									<th>First Name</th>
 									<th>Full Name</th>
 									<th>Email</th>
 									<th>Phone</th>
-									<th>Description</th>
 									<th>Operation</th>
 								</tr>
 							</thead>
@@ -51,7 +58,7 @@
 	</div>
 </div>
 
-<div id="modal-add-new-customer" class="modal fade">
+<div id="modal-add-new-customer" class="modal fade custom-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -94,7 +101,46 @@
 	</div>
 </div>
 
-<div id="modal-update-customer" class="modal fade">
+<div id="modal-detail-customer" class="modal fade custom-modal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title" style="font-weight: bold;">Customer Detail</h4>
+			</div>			
+			<div class="modal-body">
+				<div class="form-group">
+					<label for="last_name">Last Name:</label>
+					<input readonly type="text" class="form-control" id="last_name_detail" name="last_name">
+				</div>
+				<div class="form-group">
+					<label for="first_name">First Name:</label>
+					<input readonly type="text" class="form-control" id="first_name_detail" name="first_name">
+				</div>
+				<div class="form-group">
+					<label for="first_name">Email:</label>
+					<input readonly type="text" class="form-control" id="email_detail" name="email">
+				</div>
+				<div class="form-group">
+					<label for="first_name">Phone:</label>
+					<input readonly type="text" class="form-control" id="phone_detail" name="phone">
+				</div>
+				<div class="form-group">
+					<label for="description" class="control-label">Description:</label>
+					<div>
+						<textarea readonly maxlength="140" class="form-control" id="description_detail" placeholder="Enter description" name="description"></textarea>
+					</div>
+				</div>
+				
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="modal-update-customer" class="modal fade custom-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -137,7 +183,7 @@
 	</div>
 </div>
 
-<div id="modal-delete-customer" class="modal fade">
+<div id="modal-delete-customer" class="modal fade custom-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">

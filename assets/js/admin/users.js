@@ -14,16 +14,11 @@ $(document).ready(function(){
 			dataType: "json"
 		},
 		columns: [
-			{"data" : "last_name"},
-			{"data" : "first_name"},
 			{"data" : "full_name"},
 			{"data" : "email"},
 			{"data" : "phone"},
 			{"data" : "bank_name"},
 			{"data" : "bank_number"},
-			{"data" : "role"},
-			{"data" : "address"},
-			{"data" : "description"},
 			{"data" : ""}
 		],
 		"pageLength": 50,
@@ -31,9 +26,9 @@ $(document).ready(function(){
 		"columnDefs": [
 			{
 				"render": function ( data, type, row ) {
-					return "<button type='button' class='btn btn-primary update-user'> Update </button>&nbsp; <button class='btn btn-danger delete-user'>Delete</a>"
+					return "<button type='button' class='btn btn-info detail-user'> Detail </button>&nbsp; <button type='button' class='btn btn-primary update-user'> Update </button>&nbsp; <button class='btn btn-danger delete-user'>Delete</a>"
 				},
-				"targets": 10
+				"targets": 5
 			}
 		],
 		fnDrawCallback: function(data) { 
@@ -52,6 +47,24 @@ $(document).ready(function(){
 		});
 		$('#bt-add-customer-dialog').off('click');		
 	});
+	
+	$('#list-user tbody').on( 'click', '.detail-user', function () {
+        var data = tableUser.row( $(this).parents('tr') ).data();
+		$("#last_name_detail").val(data['last_name']);
+		$("#first_name_detail").val(data['first_name']);
+		$("#email_detail").val(data['email']);
+		$("#phone_detail").val(data['phone']);
+		if ($("#role_update").length > 0) {
+			$("#role_detail").val(data['role'])
+		}
+		$("#address_detail").val(data['address']);
+		$("#bank_number_detail").val(data['bank_number']);
+		$("#bank_name_detail").val(data['bank_name']);
+		tinymce.get('description_detail').setContent(decodeHtml(data['description']));
+		$('#modal-detail-user').modal({
+			show: 'true'
+		});
+    } );
 	
 	$('#list-user tbody').on( 'click', '.update-user', function () {
         var data = tableUser.row( $(this).parents('tr') ).data();

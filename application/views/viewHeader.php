@@ -1,3 +1,10 @@
+<?php 
+	$ci = &get_instance();
+	$ci->load->model('ModelProjects');
+	$likeQuery = '"id":"' . $this->session->userdata("id") . '"';
+	$listProjectMenu = $ci->ModelProjects->search("id, code, name", array("is_completed" => 0), array("members" => $likeQuery), "name DESC", 5);
+?>
+
 <!doctype html>
 <html lang="en">
 	<head>
@@ -32,7 +39,7 @@
 	
 	<body class="  ">
 		<div class="bg-dark dk" id="wrap">
-			<div id="left">
+			<div id="left" class="hidden-sm">
 				<div id="user_logged" class="media user-media bg-dark dker">
 					<div class="user-media-toggleHover">
 						<span class="fa fa-user"></span> 
@@ -53,8 +60,31 @@
 					<li class="nav-divider"></li>
 					<li <?php echo  $page =='dash' ? 'class="active"' : '' ?>>
 						<a href="<?php echo base_url() ?>dashboard">
-						  <i class="fa fa-dashboard <?php echo  $page =='dash' ? 'fa-spin' : '' ?>""></i><span class="link-title">&nbsp;Dashboard</span> 
+						  <i class="fa fa-dashboard <?php echo $page =='dash' ? 'fa-spin' : '' ?>"></i><span class="link-title">&nbsp;Dashboard</span> 
 						</a> 
+					</li>
+					<li <?php echo $page =='projects' ? 'class="active"' : '' ?>>
+						<a href="javascript:;">
+						  <i class="fa fa-tasks"></i>
+						  <span class="link-title">&nbsp;Projects</span> 
+						  <span class="fa arrow"></span>
+						</a>
+						<ul>
+							<?php 
+								foreach ($listProjectMenu as $key => $project) {
+							?>
+								<li class="<?php echo (isset($subPage) && $subPage == "project_{$project['id']}") ? "active" : '' ?>"><a href="<?php echo base_url() . 'project/'  . $project["id"] ?>"><i class='fa fa-archive <?php echo isset($subPage) && $subPage == "project_{$project['id']}"  ? 'fa-spin' : '' ?>'></i>&nbsp; <?php echo $project["name"] ?></a></li>
+							<?php
+							}
+							?>
+							<li id="more_project" class="<?php echo (isset($subPage) && $subPage == "projects") ? "active" : '' ?>"> 
+								<?php if ($this->session->userdata("role") == "admin") { ?>
+									<a href="<?php echo base_url() . "admin/projects"?>"><i class="fa fa-ellipsis-h <?php echo (isset($subPage) && $subPage == 'projects') ? 'fa-spin' : '' ?>"></i>&nbsp; More project</a>
+								<?php } else { ?>
+									<a href="<?php echo base_url() . "user/projects"?>"><i class="fa fa-ellipsis-h <?php echo isset($subPage) && $subPage =='projects' ? 'fa-spin' : '' ?>"></i>&nbsp; More project</a>
+								<?php } ?>
+							</li>
+						</ul>
 					</li>
 					<li class="nav-divider"></li>
 					<?php if ($this->session->userdata("role") == "admin") { ?>
@@ -73,7 +103,7 @@
 					
 					<li <?php echo  $page =='personal-infor' ? 'class="active"' : '' ?>>
 						<a href="<?php echo base_url() ?>user/personal_infor">
-						  <i class="fa fa-info <?php echo  $page =='personal-infor' ? 'fa-spin' : '' ?>"></i><span class="link-title">&nbsp;Personal Infor</span> 
+						  <i class="fa fa-info <?php echo  $page =='personal-infor' ? 'fa-spin' : '' ?>"></i><span class="link-title">&nbsp;&nbsp;&nbsp;Personal Infor</span> 
 						</a> 
 					</li>
 					<li <?php echo  $page =='update-pass' ? 'class="active"' : '' ?>>

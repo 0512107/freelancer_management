@@ -8,7 +8,17 @@
 
 <header class="head" style="border-left: 1px solid rgba(0, 0, 0, 0.85);">
 	<div class="main-bar">
-		<h3><i class="fa fa-user-circle-o"></i>&nbsp; Update Password</h3>
+		<div style="float:left;">
+			<h3><i class="fa fa-user-circle-o"></i>&nbsp; Update Password</h3>
+		</div>
+		<div style="float:right;">
+			<div class="btn-group">
+				<a data-placement="bottom" data-original-title="Show / Hide Left" data-toggle="tooltip" class="btn btn-primary btn-sm toggle-left" id="menu-toggle">
+				  <i class="fa fa-bars"></i>
+				</a> 
+			</div>
+		</div>
+		<div style="clear:both;"></div>		
 	</div>
 </header>
 

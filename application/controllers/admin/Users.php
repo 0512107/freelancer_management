@@ -97,6 +97,8 @@ class Users extends CI_Controller{
 					exit;
 				}
 			}
+		} else {
+			redirect(base_url() . '404');
 		}
 	}
 	
@@ -139,6 +141,8 @@ class Users extends CI_Controller{
 				echo json_encode(array("result" => "error", "field" => "", "message" => "<strong>Error:</strong> Whoops! There was an error "));
 				exit;
 			}
+		} else {
+			redirect(base_url() . '404');
 		}
 	}
 	
@@ -160,6 +164,8 @@ class Users extends CI_Controller{
 				echo json_encode(array("result" => "error", "field" => "", "message" => "<strong>Error:</strong> Whoops! There was an error "));
 				exit;
 			}
+		} else {
+			redirect(base_url() . '404');
 		}
 	}
 }
